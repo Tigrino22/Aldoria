@@ -29,7 +29,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-    m_gameState.init();
+    m_gameState.init(&m_window);
 }
 
 // Functions

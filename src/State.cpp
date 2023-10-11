@@ -2,6 +2,7 @@
 
 // State méthode
 
+
 State::State()
 {
 }

@@ -11,7 +11,7 @@ public:
     GameState();
     virtual ~GameState();
 
-    void init() override;
+    void init(sf::RenderWindow *window) override;
     void update(const float &dt) override;
     void render(sf::RenderTarget &target) override;
     void cleanUp() override; // Peut aussi gérer les sauvegardes
@@ -27,5 +27,7 @@ public:
 private:
 
     sf::RectangleShape carre;
+    int m_VELOCITY_X = 3;
+    int m_VELOCITY_Y = 3;
 
 };
