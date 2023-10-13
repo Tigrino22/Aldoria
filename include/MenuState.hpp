@@ -1,17 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "State.hpp"
 #include "Game.hpp"
-// class Game;
 
 
-
-class GameState : public State
+class MenuState : public State
 {
 public:
-    GameState(Game* m_game);
-    virtual ~GameState();
+    MenuState(Game* game);
+    virtual ~MenuState();
 
     void init() override;
     void update(const float &dt = 0.0) override;
@@ -28,11 +27,10 @@ public:
 
 private:
 
-    sf::RectangleShape carre;
-    int m_VELOCITY = 3;
-    int m_VELOCITY_X = m_VELOCITY;
-    int m_VELOCITY_Y = m_VELOCITY;
+// Game
 
-    bool m_move = false;
+    void setFont();
+    sf::Font m_font;
+    sf::Text m_menuText;
 
 };

@@ -1,4 +1,6 @@
 #include "Game.hpp"
+#include "MenuState.hpp"
+#include "GameState.hpp"
 
 // Constructors
 
@@ -29,7 +31,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-    m_gameState.init(&m_window);
+    m_states.push(new MenuState(this));
 }
 
 // Functions
@@ -48,7 +50,10 @@ void Game::updateEvent()
         if(m_event.type == sf::Event::Closed){
             m_window.close();
         }else{
-            m_gameState.handleEvent(m_event);
+            // Transfert les events au state prioritaire, CàD celui au top de la pile
+            if(!m_states.empty()){
+                m_states.top()->handleEvent(m_event);
+            }
         }
 
     }
@@ -58,8 +63,9 @@ void Game::update()
 {
     this->updateDt();
     this->updateEvent();
-    m_gameState.update(this->m_dt);
-    
+    if(!m_states.empty()){
+        m_states.top()->update(m_dt);
+    }
 }
 
 // // Rendering
@@ -71,7 +77,9 @@ void Game::render()
     // Render items
     // ...
     // Rendu de l'état supérieur de la pile
-    m_gameState.render(m_window);
+    if(!m_states.empty()){
+        m_states.top()->render(m_window);
+    }
     
 
     m_window.display();
@@ -88,4 +96,21 @@ void Game::run()
     }
 }
 
+void Game::pushState(int choise)
+{
+    switch (choise)
+    {
+    case 1:
+        m_states.push(new GameState(this));
+        break;
+    
+    default:
+        break;
+    }
 
+}
+
+sf::RenderWindow& Game::getWindow()
+{
+    return m_window;
+}
