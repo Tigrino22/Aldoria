@@ -14,6 +14,18 @@ GameState::~GameState()
 
 void GameState::init()
 {
+    /**
+     * 
+     *  Initialisation des variables
+     *  L'état est en cours
+     * 
+     *  Génération du joueur
+     * 
+     *  Return void
+     * 
+    */
+    isRunningState = true;
+
     carre.setSize(sf::Vector2f(100.f, 100.f));
     carre.setPosition(sf::Vector2f(100.f, 100.f));
     carre.setFillColor(sf::Color::Black);
@@ -50,8 +62,16 @@ void GameState::render(sf::RenderTarget &target)
     target.draw(carre);
 }
 
+// Gestion de l'état en cours
+
 void GameState::endState()
 {
+    isRunningState = false;
+}
+
+bool GameState::getIsRunning()
+{
+    return isRunningState;
 }
 
 // Event
@@ -86,6 +106,7 @@ void GameState::onKeyPressed(sf::Event& event){
         
     }
     if(event.key.code == sf::Keyboard::Down){
+
         if (m_VELOCITY_X >= 0){
             m_VELOCITY_X--;
         }else
@@ -99,4 +120,10 @@ void GameState::onKeyPressed(sf::Event& event){
             m_VELOCITY_Y++;
         }
     }
+    if(event.key.code == sf::Keyboard::Escape){
+
+        this->endState();
+        
+    }
+
 }

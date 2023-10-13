@@ -15,7 +15,9 @@ public:
     void init() override;
     void update(const float &dt = 0.0) override;
     void render(sf::RenderTarget &target) override;
+
     void endState() override; // Peut aussi gérer les sauvegardes
+    bool getIsRunning() override;
 
     void handleEvent(sf::Event& event) override;
     void onKeyPressed(sf::Event& event) override;

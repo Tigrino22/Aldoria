@@ -16,7 +16,9 @@ public:
     void init() override;
     void update(const float &dt = 0.0) override;
     void render(sf::RenderTarget &target) override;
+
     void endState() override; // Peut aussi gérer les sauvegardes
+    bool getIsRunning() override;
 
     void handleEvent(sf::Event& event) override;
     void onKeyPressed(sf::Event& event) override;
@@ -34,5 +36,8 @@ private:
     int m_VELOCITY_Y = m_VELOCITY;
 
     bool m_move = false;
+
+    // Variable de communication avec m_game
+    bool isRunningState;
 
 };

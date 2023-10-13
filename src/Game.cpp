@@ -12,7 +12,10 @@ Game::Game()
 
 Game::~Game()
 {
-
+    while(!m_states.empty()){
+        delete m_states.top();
+        m_states.pop();
+    }
 }
 
 // Initialisation
@@ -61,10 +64,20 @@ void Game::updateEvent()
 
 void Game::update()
 {
+    
     this->updateDt();
     this->updateEvent();
     if(!m_states.empty()){
         m_states.top()->update(m_dt);
+        
+        //  Suppression de l'état en cours si sa variable
+        //  isRunningState est à false;
+        if (!m_states.top()->getIsRunning())
+        {
+            delete m_states.top();
+            m_states.pop();
+        }
+        
     }
 }
 

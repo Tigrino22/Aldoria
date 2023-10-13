@@ -14,7 +14,9 @@ public:
     virtual void init() = 0;
     virtual void update(const float &dt) = 0;
     virtual void render(sf::RenderTarget &target) = 0;
+
     virtual void endState() = 0; // Peut aussi gérer les sauvegardes
+    virtual bool getIsRunning() = 0;
 
     virtual void handleEvent(sf::Event& event) = 0;
     virtual void onKeyPressed(sf::Event& event) = 0;
