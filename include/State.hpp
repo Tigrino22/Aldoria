@@ -12,6 +12,7 @@ public:
     virtual ~State();
 
     virtual void init() = 0;
+    virtual void updateEvent() = 0;
     virtual void update(const float &dt) = 0;
     virtual void render(sf::RenderTarget &target) = 0;
 

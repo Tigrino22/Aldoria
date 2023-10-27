@@ -1,6 +1,7 @@
 #include "MenuState.hpp"
 
 #include <iostream>
+#include <filesystem>
 
 MenuState::MenuState(Game* game)
 : State(game){
@@ -26,6 +27,10 @@ void MenuState::init() {
     m_menuText.setPosition(350.f, 280.f);
     m_menuText.setCharacterSize(18);
     m_menuText.setString("Welcome in Aldoria\nPress Space to play!");
+}
+
+void MenuState::updateEvent()
+{
 }
 
 void MenuState::update(const float &dt) {
@@ -119,7 +124,8 @@ void MenuState::setFont()
      *  Return void
      * 
     */
-    if(!m_font.loadFromFile("res/font/Pixelify/static/PixelifySans-Regular.ttf")){
+    std::string fontPath = std::filesystem::current_path().string() + "/res/font/Pixelify/static/PixelifySans-Regular.ttf";
+    if(!m_font.loadFromFile(fontPath)){
         std::cout << "Error::MenuState::SetFont : Failed to load font" << std::endl;
     }
 }

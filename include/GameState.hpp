@@ -3,6 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Player.hpp"
+
+
 // class Game;
 
 
@@ -14,6 +17,7 @@ public:
     virtual ~GameState();
 
     void init() override;
+    void updateEvent() override;
     void update(const float &dt = 0.0) override;
     void render(sf::RenderTarget &target) override;
 
@@ -30,14 +34,16 @@ public:
 
 private:
 
-    sf::RectangleShape carre;
-    int m_VELOCITY = 3;
-    int m_VELOCITY_X = m_VELOCITY;
-    int m_VELOCITY_Y = m_VELOCITY;
+    void loadPlayerTexture(){};
 
-    bool m_move = false;
+    sf::RectangleShape carre;
+    
 
     // Variable de communication avec m_game
     bool isRunningState;
+
+    // Texture du joueur
+    Player m_player;
+    sf::Texture m_playerTexture;
 
 };

@@ -13,6 +13,7 @@ public:
     virtual ~MenuState();
 
     void init() override;
+    void updateEvent() override;
     void update(const float &dt = 0.0) override;
     void render(sf::RenderTarget &target) override;
 

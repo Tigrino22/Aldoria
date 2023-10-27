@@ -1,22 +1,5 @@
-// sf::Font font;
-// loadFont(font);
-// sf::Text text("Bonjour Aldoria", font, 24);
-// text.setFillColor(sf::Color::Black);
-// text.setPosition(sf::Vector2f((window.getSize().x / 2), window.getSize().y / 2));
-// std::cout << text.getCharacterSize() << std::endl;
-
-// sf::RectangleShape carre(sf::Vector2f(50, 50));
-// carre.setFillColor(sf::Color::Black);
-// carre.setPosition(100, 100);
-
-
-void loadFont(sf::Font &font);
-
-void loadFont(sf::Font &font){
-    
-    if (!font.loadFromFile("res/font/Pixelify/static/PixelifySans-Regular.ttf"))
-    {
-        std::cout << "Font loading error..." << std::endl;
-    }
-    
-}
+[] Faire l'animation du joueur.
+[] Gérer les collision du personnage.
+[] Créer un bouton pour le menu principal.
+[] Gérer la position de la souris.
+[] Création d'une classe Entity d'où héritera le player.

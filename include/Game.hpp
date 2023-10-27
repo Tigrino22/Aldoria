@@ -10,6 +10,8 @@
 #include "MenuState.hpp"
 
 
+
+
 class Game
 {
 public:
@@ -38,6 +40,7 @@ private:
 // Environnement variables
     sf::RenderWindow m_window;
     sf::Event m_event;
+    
 
 // Time variables
     sf::Clock m_dtClock;

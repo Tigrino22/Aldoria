@@ -2,8 +2,9 @@
 
 
 GameState::GameState(Game* game)
-: State(game)
+: State(game), m_player(100.f, 100.f)
 {
+    
     this->init();
 }
 
@@ -24,42 +25,39 @@ void GameState::init()
      *  Return void
      * 
     */
+
     isRunningState = true;
 
-    carre.setSize(sf::Vector2f(100.f, 100.f));
-    carre.setPosition(sf::Vector2f(100.f, 100.f));
-    carre.setFillColor(sf::Color::Black);
+    
+}
+
+void GameState::updateEvent()
+{
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+        m_player.move(0, m_player.getVelocity() * (-1));
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+        m_player.move(0, m_player.getVelocity() * (1));
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        m_player.move(m_player.getVelocity() * (-1), 0);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        m_player.move(m_player.getVelocity() * (1), 0);
+    }
 }
 
 void GameState::update(const float &dt)
 {
-    if(m_move){
-        carre.setPosition(sf::Vector2f(carre.getPosition().x + m_VELOCITY_X, carre.getPosition().y + m_VELOCITY_Y));
 
-        if(carre.getPosition().x >= m_game->getWindow().getSize().x - carre.getSize().x){
-            carre.setPosition(sf::Vector2f(m_game->getWindow().getSize().x - carre.getSize().x, carre.getPosition().y));
-            m_VELOCITY_X *= -1;
-        }
-        if(carre.getPosition().x <= 0){
-            carre.setPosition(0, carre.getPosition().y);
-            m_VELOCITY_X *= -1;
-        }
-
-        if(carre.getPosition().y >= m_game->getWindow().getSize().y - carre.getSize().y){
-            carre.setPosition(sf::Vector2f(carre.getPosition().x, m_game->getWindow().getSize().y - carre.getSize().y));
-            m_VELOCITY_Y *= -1;
-        }
-        if(carre.getPosition().y <= 0){
-            carre.setPosition(carre.getPosition().x, 0);
-            m_VELOCITY_Y *= -1;
-        }
-    }
+    // Mise à jour des informations prise par le clavier.
+    this->updateEvent();
     
 }
 
 void GameState::render(sf::RenderTarget &target)
 {
-    target.draw(carre);
+    m_player.draw(target);
 }
 
 // Gestion de l'état en cours
@@ -76,54 +74,17 @@ bool GameState::getIsRunning()
 
 // Event
 void GameState::handleEvent(sf::Event& event) {
+
     if(event.type == sf::Event::KeyPressed){
         onKeyPressed(event);
     }
 }
 
 void GameState::onKeyPressed(sf::Event& event){
-    if(event.key.code == sf::Keyboard::Space){
-        if(m_move == false){
-            m_move = true;
-        }else{
-            m_move = false;
-        }
-    }
-    if(event.key.code == sf::Keyboard::Up){
-        if (m_VELOCITY_X >= 0){
-            m_VELOCITY_X++;
-        }else
-        {
-            m_VELOCITY_X--;
-        }
-        if (m_VELOCITY_Y >= 0){
-            m_VELOCITY_Y++;
-        }else
-        {
-            m_VELOCITY_Y--;
-        }
-        
-        
-    }
-    if(event.key.code == sf::Keyboard::Down){
-
-        if (m_VELOCITY_X >= 0){
-            m_VELOCITY_X--;
-        }else
-        {
-            m_VELOCITY_X++;
-        }
-        if (m_VELOCITY_Y >= 0){
-            m_VELOCITY_Y--;
-        }else
-        {
-            m_VELOCITY_Y++;
-        }
-    }
+    if(event.key.code == sf::Keyboard::Space){}
+    
     if(event.key.code == sf::Keyboard::Escape){
-
-        this->endState();
-        
+        this->endState();  
     }
 
 }

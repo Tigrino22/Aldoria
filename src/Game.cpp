@@ -26,7 +26,7 @@ void Game::initWindow()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    m_window.create(sf::VideoMode(800, 600), "My window", sf::Style::Default, settings);
+    m_window.create(sf::VideoMode(800, 600), "Aldoria", sf::Style::Default, settings);
     m_window.setVerticalSyncEnabled(true);
 
 
@@ -49,7 +49,7 @@ void Game::updateDt()
 
 void Game::updateEvent()
 {
-    while(m_window.pollEvent(m_event)){
+     while(m_window.pollEvent(m_event)){
         if(m_event.type == sf::Event::Closed){
             m_window.close();
         }else{
@@ -109,7 +109,7 @@ void Game::run()
     }
 }
 
-void Game::pushState(int choise)
+void Game::pushState(int choise) // Passage aux énumartions dès que possible
 {
     switch (choise)
     {
