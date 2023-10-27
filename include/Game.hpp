@@ -8,6 +8,7 @@
 #include "State.hpp"
 #include "GameState.hpp"
 #include "MenuState.hpp"
+#include "Enumerations.hpp"
 
 
 
@@ -30,7 +31,7 @@ public:
     void run();
 
 // Manage States
-    void pushState(int choise);
+    void pushState(CurrentState choice);
     sf::RenderWindow& getWindow();
 
 private:

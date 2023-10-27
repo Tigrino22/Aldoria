@@ -2,7 +2,7 @@
 
 
 GameState::GameState(Game* game)
-: State(game), m_player(100.f, 100.f)
+: State(game)
 {
     
     this->init();
@@ -35,15 +35,19 @@ void GameState::updateEvent()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         m_player.move(0, m_player.getVelocity() * (-1));
+        m_player.setDirection(Direction::Up);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
         m_player.move(0, m_player.getVelocity() * (1));
+        m_player.setDirection(Direction::Down);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         m_player.move(m_player.getVelocity() * (-1), 0);
+        m_player.setDirection(Direction::Left);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         m_player.move(m_player.getVelocity() * (1), 0);
+        m_player.setDirection(Direction::Left);
     }
 }
 

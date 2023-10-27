@@ -110,7 +110,7 @@ void MenuState::onKeyPressed(sf::Event& event){
      *  Return void
     */
     if(event.key.code == sf::Keyboard::Space){
-        this->m_game->pushState(1);
+        this->m_game->pushState(CurrentState::Play);
     }
 }
 

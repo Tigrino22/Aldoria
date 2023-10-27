@@ -109,11 +109,11 @@ void Game::run()
     }
 }
 
-void Game::pushState(int choise) // Passage aux énumartions dès que possible
+void Game::pushState(CurrentState choice) // Passage aux énumartions dès que possible
 {
-    switch (choise)
+    switch (choice)
     {
-    case 1:
+    case CurrentState::Play:
         m_states.push(new GameState(this));
         break;
     
