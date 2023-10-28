@@ -8,8 +8,6 @@
 
 // class Game;
 
-
-
 class GameState : public State
 {
 public:

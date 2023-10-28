@@ -1,10 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 class Game;
 
 
-/// @brief Classe des Etats
 class State
 {
 public:
@@ -32,12 +32,3 @@ protected:
     Game* m_game;
     
 };
-
-
-
-
-
-
-
-
-
