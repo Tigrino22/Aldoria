@@ -4,7 +4,7 @@
 class Game;
 
 
-/// @brief Classe des Etat
+/// @brief Classe des Etats
 class State
 {
 public:

@@ -33,7 +33,7 @@ public:
 
 protected:
 
-    int m_velocity = 2;
+    int m_velocity = 1;
     float m_scale = 1;
     sf::Vector2f position; 
 
