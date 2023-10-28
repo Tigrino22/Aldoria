@@ -13,7 +13,7 @@ public:
 
     virtual void init() = 0;
     virtual void updateEvent() = 0;
-    virtual void update(const float &dt) = 0;
+    virtual void update(const sf::Int32 &dt) = 0;
     virtual void render(sf::RenderTarget &target) = 0;
 
     virtual void endState() = 0; // Peut aussi gérer les sauvegardes

@@ -33,7 +33,7 @@ void MenuState::updateEvent()
 {
 }
 
-void MenuState::update(const float &dt) {
+void MenuState::update(const sf::Int32 &dt) {
     /**
      * Update de la position du texte à chaque frame
      * 

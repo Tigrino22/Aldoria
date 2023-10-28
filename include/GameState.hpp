@@ -18,7 +18,7 @@ public:
 
     void init() override;
     void updateEvent() override;
-    void update(const float &dt = 0.0) override;
+    void update(const sf::Int32 &dt = 0) override;
     void render(sf::RenderTarget &target) override;
 
     void endState() override; // Peut aussi gérer les sauvegardes

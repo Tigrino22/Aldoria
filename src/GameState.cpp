@@ -27,10 +27,17 @@ void GameState::init()
     */
 
     isRunningState = true;
+    m_player.loadSprite("res/characterSprite.jpg");
 
-    
 }
 
+/**
+ * 
+ *  Fonciton prise en compte des direction du joueur et bouge le joueur avec 
+ *  l'appel de la méthode move().
+ * 
+ *  Return void
+*/
 void GameState::updateEvent()
 {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
@@ -47,15 +54,16 @@ void GameState::updateEvent()
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         m_player.move(m_player.getVelocity() * (1), 0);
-        m_player.setDirection(Direction::Left);
+        m_player.setDirection(Direction::Right);
     }
 }
 
-void GameState::update(const float &dt)
+void GameState::update(const sf::Int32 &dt)
 {
 
     // Mise à jour des informations prise par le clavier.
     this->updateEvent();
+    this->m_player.update(dt);
     
 }
 

@@ -43,7 +43,7 @@ void Game::initStates()
 void Game::updateDt()
 {
     // Update the time variable 1 per frame
-    m_dt = m_dtClock.restart().asSeconds();
+    m_dt = m_dtClock.getElapsedTime().asMilliseconds();
     
 }
 

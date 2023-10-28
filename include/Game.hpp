@@ -4,6 +4,7 @@
 #include <stack>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <string>
 
 #include "State.hpp"
 #include "GameState.hpp"

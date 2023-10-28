@@ -2,4 +2,7 @@
 [] Gérer les collision du personnage.
 [] Créer un bouton pour le menu principal.
 [] Gérer la position de la souris.
-[] Création d'une classe Entity d'où héritera le player.
+[x] Création d'une classe Entity d'où héritera le player.
+
+
+Le probleme vient des sprites qui sont en même temps le personnage...

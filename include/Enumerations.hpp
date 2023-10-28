@@ -3,10 +3,14 @@
 
 enum Direction
 {
-    Up,
     Down,
     Left,
-    Right
+    Right,
+    Up,
+    DownAttack,
+    UpAttack,
+    RightAttack,
+    LeftAttack
     
 };
 
