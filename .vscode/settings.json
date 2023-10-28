@@ -75,7 +75,21 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "stop_token": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "complex": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/valentin/Desktop/C++/Aldoria",
+            "binaryPath": "/Users/valentin/Desktop/C++/Aldoria/bin/Aldoria",
+            "binaryArgs": []
+        }
+    ],
+    "cmake.additionalCompilerSearchDirs": [
+        "/include"
+    ],
+    "makefile.configurations": [
+
+    ]
 }

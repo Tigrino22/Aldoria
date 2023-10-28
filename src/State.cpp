@@ -2,7 +2,8 @@
 
 // State méthode
 
-State::State()
+
+State::State(Game* game) : m_game(game)
 {
 }
 

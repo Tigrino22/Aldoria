@@ -1,4 +1,6 @@
 #include "Game.hpp"
+#include "MenuState.hpp"
+#include "GameState.hpp"
 
 // Constructors
 
@@ -10,7 +12,10 @@ Game::Game()
 
 Game::~Game()
 {
-
+    while(!m_states.empty()){
+        delete m_states.top();
+        m_states.pop();
+    }
 }
 
 // Initialisation
@@ -21,7 +26,7 @@ void Game::initWindow()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    m_window.create(sf::VideoMode(800, 600), "My window", sf::Style::Default, settings);
+    m_window.create(sf::VideoMode(800, 600), "Aldoria", sf::Style::Default, settings);
     m_window.setVerticalSyncEnabled(true);
 
 
@@ -29,7 +34,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-    m_gameState.init();
+    m_states.push(new MenuState(this));
 }
 
 // Functions
@@ -38,17 +43,20 @@ void Game::initStates()
 void Game::updateDt()
 {
     // Update the time variable 1 per frame
-    m_dt = m_dtClock.restart().asSeconds();
+    m_dt = m_dtClock.getElapsedTime().asMilliseconds();
     
 }
 
 void Game::updateEvent()
 {
-    while(m_window.pollEvent(m_event)){
+     while(m_window.pollEvent(m_event)){
         if(m_event.type == sf::Event::Closed){
             m_window.close();
         }else{
-            m_gameState.handleEvent(m_event);
+            // Transfert les events au state prioritaire, CàD celui au top de la pile
+            if(!m_states.empty()){
+                m_states.top()->handleEvent(m_event);
+            }
         }
 
     }
@@ -56,10 +64,21 @@ void Game::updateEvent()
 
 void Game::update()
 {
+    
     this->updateDt();
     this->updateEvent();
-    m_gameState.update(this->m_dt);
-    
+    if(!m_states.empty()){
+        m_states.top()->update(m_dt);
+        
+        //  Suppression de l'état en cours si sa variable
+        //  isRunningState est à false;
+        if (!m_states.top()->getIsRunning())
+        {
+            delete m_states.top();
+            m_states.pop();
+        }
+        
+    }
 }
 
 // // Rendering
@@ -71,7 +90,9 @@ void Game::render()
     // Render items
     // ...
     // Rendu de l'état supérieur de la pile
-    m_gameState.render(m_window);
+    if(!m_states.empty()){
+        m_states.top()->render(m_window);
+    }
     
 
     m_window.display();
@@ -88,4 +109,21 @@ void Game::run()
     }
 }
 
+void Game::pushState(CurrentState choice) // Passage aux énumartions dès que possible
+{
+    switch (choice)
+    {
+    case CurrentState::Play:
+        m_states.push(new GameState(this));
+        break;
+    
+    default:
+        break;
+    }
 
+}
+
+sf::RenderWindow& Game::getWindow()
+{
+    return m_window;
+}

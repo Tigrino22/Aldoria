@@ -2,12 +2,14 @@
 
 #include <iostream>
 #include <stack>
-#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <string>
 
 #include "State.hpp"
 #include "GameState.hpp"
+#include "MenuState.hpp"
+#include "Enumerations.hpp"
 
 
 class Game
@@ -27,6 +29,10 @@ public:
 // Running function
     void run();
 
+// Manage States
+    void pushState(CurrentState choice);
+    sf::RenderWindow& getWindow();
+
 private:
 // Function init
     void initWindow();
@@ -35,11 +41,13 @@ private:
     sf::RenderWindow m_window;
     sf::Event m_event;
     
-    GameState m_gameState;
 
 // Time variables
     sf::Clock m_dtClock;
     float m_dt;
+
+// States
+    std::stack<State*> m_states;
 
     
 };
