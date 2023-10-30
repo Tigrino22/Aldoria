@@ -43,7 +43,7 @@ protected:
 
     std::vector<std::vector<sf::Texture>> animations;
     int currentFrame;
-    Direction currentDirection = Down;
+    Direction currentDirection = DownIdle;
     const sf::Int32 spriteChangeInterval = 250;
     sf::Clock spriteClock;
     sf::Int32 elapsedTime; 
