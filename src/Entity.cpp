@@ -1,9 +1,7 @@
 #include "Entity.hpp"
 
 Entity::Entity(/* args */)
-{
-
-    
+{ 
 }
 
 Entity::~Entity()
@@ -54,11 +52,11 @@ void Entity::loadSprite(std::string filepath)
         animations.push_back(animation);
         
     }
-
+    
     currentFrame = 0;
     sprite.setTexture(animations[static_cast<int>(currentDirection)][currentFrame]);
     
-
+    
 }
 
 void Entity::move(float x, float y) {

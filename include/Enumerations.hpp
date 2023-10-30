@@ -7,10 +7,11 @@ enum Direction
     Left,
     Right,
     Up,
-    DownAttack,
-    UpAttack,
-    RightAttack,
-    LeftAttack
+    DownIdle,
+    LeftIdle,
+    RightIdle,
+    UpIdle,
+
     
 };
 

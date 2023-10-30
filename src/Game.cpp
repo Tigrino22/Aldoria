@@ -85,7 +85,7 @@ void Game::update()
 void Game::render()
 {
 
-   m_window.clear(sf::Color::White);
+   m_window.clear(sf::Color::Green);
     
     // Render items
     // ...

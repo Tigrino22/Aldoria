@@ -24,7 +24,7 @@ public:
 
     void handleEvent(sf::Event& event) override;
     void onKeyPressed(sf::Event& event) override;
-    // void onKeyRelease(sf::Event& event){};
+    void onKeyRelease(sf::Event& event) override;
     // void onMouseButtonPressed(sf::Event& event) {};
     // void onMouseButtonRelease(sf::Event& event) {};
     // void onMouseMoved(sf::Event& evt) {};

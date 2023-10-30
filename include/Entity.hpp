@@ -18,17 +18,18 @@ class Entity
 public:
     Entity(/* args */);
     virtual ~Entity();
-    void update(const sf::Int32 &dt = 0);
-    virtual void loadSprite(std::string filepath);
+    
+    virtual void update(const sf::Int32 &dt = 0);
+    void draw(sf::RenderTarget& target) const;
 
     void move(float x, float y);
     void setPosition(float x, float y);
     sf::Vector2f getPosition() const;
-    void draw(sf::RenderTarget& target) const;
-
     int getVelocity() const;
+
     Direction getDirection() const; // Méthode qui devriat rétourner une enumération de la direction du joueur.
     void setDirection(Direction direction);
+    virtual void loadSprite(std::string filepath);
     void setSprite(); // boucle pour sélectionner le sprite et créer une animation
 
 protected:

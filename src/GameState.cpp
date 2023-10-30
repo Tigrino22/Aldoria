@@ -27,7 +27,7 @@ void GameState::init()
     */
 
     isRunningState = true;
-    m_player.loadSprite("res/characterSprite.jpg");
+    m_player.loadSprite("res/characterSprites.png");
 
 }
 
@@ -40,35 +40,23 @@ void GameState::init()
 */
 void GameState::updateEvent()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        m_player.move(0, m_player.getVelocity() * (-1));
-        m_player.setDirection(Direction::Up);
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-        m_player.move(0, m_player.getVelocity() * (1));
-        m_player.setDirection(Direction::Down);
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        m_player.move(m_player.getVelocity() * (-1), 0);
-        m_player.setDirection(Direction::Left);
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        m_player.move(m_player.getVelocity() * (1), 0);
-        m_player.setDirection(Direction::Right);
-    }
+    // Appel des evenements des entity qui en ont besoin
+    m_player.updateEvent();
 }
 
 void GameState::update(const sf::Int32 &dt)
 {
-
-    // Mise à jour des informations prise par le clavier.
-    this->updateEvent();
+    
+    // Mise à jour des entités du jeu
     this->m_player.update(dt);
+    this->updateEvent();
     
 }
 
 void GameState::render(sf::RenderTarget &target)
 {
+
+    // Rendu des entités du jeu
     m_player.draw(target);
 }
 
@@ -90,6 +78,9 @@ void GameState::handleEvent(sf::Event& event) {
     if(event.type == sf::Event::KeyPressed){
         onKeyPressed(event);
     }
+    if(event.type == sf::Event::KeyReleased){
+        onKeyRelease(event);
+    }
 }
 
 void GameState::onKeyPressed(sf::Event& event){
@@ -99,4 +90,12 @@ void GameState::onKeyPressed(sf::Event& event){
         this->endState();  
     }
 
+    m_player.onKeyPressed(event);
+}
+
+// Prise en compte des informations claviers et 
+//  Retransmises au besoin
+void GameState::onKeyRelease(sf::Event &event)
+{
+    m_player.onKeyRelease(event);
 }
